@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace calcJuros
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCalc_Click(object sender, EventArgs e)
+        {
+            double taxaDeJurosMensal = (double.Parse(txtJuros.Text) / 100) / 12;
+            double valorDaParcela = (double.Parse(txtValorEmp.Text) * taxaDeJurosMensal) / (1 - Math.Pow(1 + taxaDeJurosMensal, -int.Parse(txtParcelas.Text)));
+            double valorTotal = valorDaParcela * int.Parse(txtParcelas.Text);
+            double valorJuros = valorTotal - double.Parse(txtValorEmp.Text);
+
+
+            txtValorTotal.Text = valorTotal.ToString("N2");
+            txtValorJuros.Text = valorJuros.ToString("N2");
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
